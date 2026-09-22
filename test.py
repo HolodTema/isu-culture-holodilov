@@ -12,7 +12,16 @@ def test_divide():
     expected = 0.5
     assert divide(a, b) == expected
 
+def test_divide_zero():
+    a = 2
+    b = 0
+    try:
+        divide(a, b)
+    except ValueError as e:
+        print("Test (division by zero) is passed")
+    
 if __name__ == "__main__":
     test_sum()
     test_divide()
+    test_divide_zero()
 
