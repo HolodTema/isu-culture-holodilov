@@ -1,5 +1,19 @@
 
-def _parse_record(line: str):
+def _parse_record(line: str) -> dict | None: 
+    """Parsing information for one sale.
+
+    Parameters:
+        line - string that contain sale record in form of comma-separated values
+
+    Returns:
+        sale - sale information in form of dict
+
+    Raises:
+        ValueError
+    """
+    if line == "":
+        raise ValueError("Got zero length line")
+    
     sale = line.strip().split(",")
     if len(sale) != 4:
         return None
