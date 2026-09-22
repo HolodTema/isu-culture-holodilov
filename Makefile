@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := help
 
 create-practice:
-ifndef PRACTICE:
+ifndef PRACTICE
 	$(error must pass val via PRACTICE)
 endif
 	@echo "Creating practice"
@@ -9,7 +9,7 @@ endif
 	cp PracticeMakefile $(PRACTICE)/Makefile
 
 remove-practice:
-ifndef PRACTICE:
+ifndef PRACTICE
 	$(error must pass val via PRACTICE)
 endif
 	rm -rf $(PRACTICE)
