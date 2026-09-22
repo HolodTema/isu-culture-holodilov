@@ -2,6 +2,7 @@
 #| **Свыше 50 млн руб.** | 22% | 9 402 000 + 22% с суммы превышения |
 
 from ndfl import calculate_ndfl
+import pytest
 
 def test_ndfl_tier_1_basic():
     assert calculate_ndfl(2_000_000) == 260_000
@@ -23,4 +24,8 @@ def test_ndfl_tier_5_basic():
     # 30_000_000 -> 2_400_000 * 0.13 + 2_600_000 * 0.15 + 15_000_000 * 0.18
     #               + 30_000_000 * 0.20 + 10_000_000 * 0.22
     assert calculate_ndfl(60_000_000) == 11_602_000
+
+@pytest.mark.xfail
+def test_ndfl_fails_negative_income():
+    calculate_ndfl(-1000)
 
