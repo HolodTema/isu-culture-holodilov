@@ -10,3 +10,6 @@ def divide(a, b):
         raise ValueError("Unable to handle division operation with lists")
     return a / b
 
+def substract(a, b):
+    return a - b
+
