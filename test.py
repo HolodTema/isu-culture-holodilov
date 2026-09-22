@@ -19,9 +19,17 @@ def test_divide_zero():
         divide(a, b)
     except ValueError as e:
         print("Test (division by zero) is passed")
-    
+
+def test_divide_lists():
+    try:
+        divide([1, 2, 3], [4, 5, 6])
+        print("Test (division lists) is failed")
+    except:
+        print("Test (divizion lists) is passed")
+
 if __name__ == "__main__":
     test_sum()
     test_divide()
     test_divide_zero()
+    test_divide_lists()
 
