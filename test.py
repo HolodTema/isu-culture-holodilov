@@ -10,7 +10,7 @@ def test_substract():
     a = 5
     b = 3
     expected = 2
-    assert sum(a, b) == expected
+    assert substract(a, b) == expected
     print("Test substract is passed")
 
 def test_divide():

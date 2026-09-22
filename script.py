@@ -11,5 +11,10 @@ def divide(a, b):
     return a / b
 
 def substract(a, b):
-    return a - b
+    result = 0
+    if isinstance(a, str) and isinstance(b, str):
+        result = a.replace(b, "")
+    else:
+        result = a - b
+    return result
 
