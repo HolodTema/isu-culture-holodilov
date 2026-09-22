@@ -1,4 +1,4 @@
-def calculate_ndfl(income):
+def calculate_ndfl(income, investment=False, has_children=False):
     result = 0
     # start addition taxrate
     tiers = [
