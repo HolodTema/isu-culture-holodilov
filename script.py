@@ -10,3 +10,11 @@ def divide(a, b):
         raise ValueError("Unable to handle division operation with lists")
     return a / b
 
+def substract(a, b):
+    result = 0
+    if isinstance(a, str) and isinstance(b, str):
+        result = a.replace(b, "")
+    else:
+        result = a - b
+    return result
+
