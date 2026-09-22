@@ -6,5 +6,7 @@ def divide(a, b):
         raise ValueError("Denominator cannot be zero")
     if isinstance(a, str) or isinstance(b, str):
         raise ValueError("Unable to handle division operation with strings")
+    if isinstance(a, list) or isinstance(b, list):
+        raise ValueError("Unable to handle division operation with lists")
     return a / b
 
