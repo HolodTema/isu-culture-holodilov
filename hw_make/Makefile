@@ -1,4 +1,4 @@
-.PHONY: help install install-dev run-server run-client clean
+.PHONY: help install install-dev run-server run-client clean demo lint typecheck check-requirements check
 
 VENV := .venv
 PY := $(VENV)/bin/python
