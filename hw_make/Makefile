@@ -48,6 +48,9 @@ lint: install-dev
 typecheck: install-dev
 	$(PY) -m mypy src
 
+check-requirements: install-dev
+	$(PY) scripts/check_requirements.py
+
 clean:
-	rm -rf $(VENV)
+	rm -rf $(VENV) output 
 
