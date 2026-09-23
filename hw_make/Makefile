@@ -1,4 +1,4 @@
-.PHONY: help install
+.PHONY: help install install-dev run-server run-client clean
 
 VENV := .venv
 PY := $(VENV)/bin/python
@@ -21,4 +21,15 @@ install: $(PY) requirements.txt setup.py
 	$(PIP) install -e .
 
 
+install-dev: install requirements-dev.txt
+	$(PIP) install -r requirements-dev.txt
 	
+run-server: install
+	$(UVICORN) fibdemo.server:app --host $(HOST) --port $(PORT)
+
+run-client: install
+	$(PY) -m client.py
+
+clean:
+	rm -rf $(VENV)
+
