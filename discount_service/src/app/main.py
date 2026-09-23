@@ -29,6 +29,11 @@ def calculate_discount(request: DiscountRequest) -> DiscountResponse:
             discount_percent=10.0,
             reason="Because of promocode STUDENT10",
         )
+    if request.promocode == "ISU80":
+        return DiscountResponse(
+            discount_percent=80.0,
+            reason="Because of promocode ISU80",
+        )
     if request.quantity >= 10:
         return DiscountResponse(
             discount_percent=5.0,
@@ -38,4 +43,3 @@ def calculate_discount(request: DiscountRequest) -> DiscountResponse:
         discount_percent=0.0,
         reason="No discount",
     )
-

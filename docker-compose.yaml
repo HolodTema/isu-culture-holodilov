@@ -6,6 +6,13 @@ services:
     networks:
       - service-net
 
+  discount-service:
+    build: ./discount_service
+    ports:
+      - "8003:8000"
+    networks:
+      - service-net
+
   order-service:
     build: ./order_service
     ports:
@@ -14,6 +21,7 @@ services:
       PRODUCT_SERVICE_URL: http://product-service:8000
     depends_on:
       - product-service
+      - discount-service
     networks:
       - service-net
 
