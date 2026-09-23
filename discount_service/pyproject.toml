@@ -1,0 +1,18 @@
+[project]
+name = "discount-service"
+version = "0.0.1"
+description = "FastAPI microservice to handle discounts"
+authors = [
+    {name = "artem",email = "art.holodilov@gmail.com"}
+]
+license = "GPL"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python="^3.12"
+fastapi = "^0.141.1"
+uvicorn = {extras = ["standard"], version = "^0.53.0"}
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
