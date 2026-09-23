@@ -1,8 +1,9 @@
 import os
 from pathlib import Path
-import requests
+
 import matplotlib
 import matplotlib.pyplot as plt
+import requests
 
 matplotlib.use("Agg")
 

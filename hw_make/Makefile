@@ -42,6 +42,12 @@ run-client: install
 demo: install
 	$(UVICORN) server:app --host $(HOST) --port $(PORT) & sleep 2 ; $(PY) -m client ; kill %1
 
+lint: install-dev
+	$(PY) -m ruff check src scripts
+
+typecheck: install-dev
+	$(PY) -m mypy
+
 clean:
 	rm -rf $(VENV)
 
