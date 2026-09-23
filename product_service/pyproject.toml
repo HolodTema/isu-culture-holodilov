@@ -1,18 +1,17 @@
 [project]
-name = "order-service"
+name = "product-service"
 version = "0.0.1"
-description = "Fastapi microservice to CRUD orders"
+description = "Fastapi microservice to CRUD products"
 authors = [
     {name = "artem",email = "art.holodilov@gmail.com"}
 ]
-license = "ApacheLicense2.0"
+license = "GPL"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.13"
+python = "^3.12"
 fastapi = "^0.141.1"
 uvicorn = {extras = ["standard"], version = "^0.53.0"}
-httpx = "^0.28.1"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
