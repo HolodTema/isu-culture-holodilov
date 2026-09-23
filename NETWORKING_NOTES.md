@@ -26,3 +26,14 @@ curl -X POST http://127.0.0.1:8002/orders \
   -d '{"product_id":"notebook","quantity":12,"promocode":"STUDENT10"}'
 ```
 
+после можно удалить все контейнеры и сеть командой
+
+```bash
+docker rm -f order-service product-service discount-service
+docker network rm service-net
+```
+
+## запускаем 3 контейнера через docker-compose
+
+```bash
+

@@ -1,15 +1,15 @@
 services:
   product-service:
     build: ./product_service
-    ports:
-      - "8001:8000"
+    # ports:
+    #  - "8001:8000"
     networks:
       - service-net
 
   discount-service:
     build: ./discount_service
-    ports:
-      - "8003:8000"
+    # ports:
+    #  - "8003:8000"
     networks:
       - service-net
 
