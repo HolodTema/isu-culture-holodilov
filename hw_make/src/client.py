@@ -1,5 +1,5 @@
 import os
-import pathlib
+from pathlib import Path
 import requests
 import matplotlib
 import matplotlib.pyplot as plt
@@ -12,7 +12,7 @@ DEFAULT_OUTPUT = Path("output/fib.png")
 
 def fetch_fibonacci(server_url: str, n: int) -> list:
     response = requests.get(
-        server_url.rstrip("/") + "/fib",
+        server_url.rstrip("/") + "/fiblist",
         params={"n": n},
         timeout=5,
     )

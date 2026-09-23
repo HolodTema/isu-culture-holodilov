@@ -6,15 +6,11 @@ def fibonacci(n: int) -> list:
     if n < 1:
         raise ValueError("n must be >= 1")
     seq = [0]
-    a = 0
-    b = 1
-    for i in range(n - 1):
+    a, b = 0, 1
+    for _ in range(n - 1):
         a, b = b, a + b
-        b = a + b
-        a = b
         seq.append(b)
     return seq
-
 
 @app.get("/fiblist")
 def get_fibonacci_list(n: int = Query(10, ge=1, le=200, description="Amount numbers")) -> dict:

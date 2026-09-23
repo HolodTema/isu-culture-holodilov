@@ -1,9 +1,17 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="fibonacci-server-plots",
+    name="fibdemo",
     version="0.0.1",
     description="FastAPI Fibonacci API and matplotlib plot client",
     package_dir={"": "src"},
-    packages=find_packages(where="src"),
+    py_modules=["server", "client"],
     python_requires=">=3.12",
+    install_requires=[
+        "fastapi>=0.110",
+        "uvicorn[standard]>=0.29",
+        "requests>=2.31",
+        "matplotlib>=3.8",
+    ],
+)
+
