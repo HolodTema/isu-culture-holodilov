@@ -1,5 +1,5 @@
-from fastapi import FastAPI, HTTPException, Query
 import uvicorn
+from fastapi import FastAPI, HTTPException, Query
 
 app = FastAPI(title="Fibonacci API", version="0.0.1")
 

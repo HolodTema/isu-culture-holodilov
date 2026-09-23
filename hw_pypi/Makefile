@@ -33,14 +33,13 @@ install-dev: install requirements-dev.txt
 	$(PIP) install -r requirements-dev.txt
 	
 run-server: install
-# here not working
-	$(UVICORN) server:app --host $(HOST) --port $(PORT)
+	$(VENV)/bin/fib-server
 
 run-client: install
-	$(PY) -m client
+	$(VENV)/bin/fib-client
 
 demo: install
-	$(UVICORN) server:app --host $(HOST) --port $(PORT) & sleep 2 ; $(PY) -m client ; kill %1
+	$(VENV)/bin/fib-demo
 
 lint: install-dev
 	$(PY) -m ruff check src scripts

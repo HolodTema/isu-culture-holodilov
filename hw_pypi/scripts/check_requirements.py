@@ -5,6 +5,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 REQUIREMENTS = ROOT / "requirements.txt"
 SRC = ROOT / "src"
+LOCAL_PACKAGES = {"fibapp"}
 
 
 def imports_in(path):
@@ -38,7 +39,7 @@ def main():
         found |= imports_in(path)
 
     stdlib = set(sys.stdlib_module_names)
-    third_party = found - stdlib
+    third_party = found - stdlib - LOCAL_PACKAGES
 
     declared = declared_in_requirements()
     missing = sorted(name for name in third_party if name.lower() not in declared)

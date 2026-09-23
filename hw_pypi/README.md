@@ -3,9 +3,9 @@
 Small educational project that shows how to wrap Python application into
 reproducible workflow with single `Makefile` entry point.
 
-Project has two parts. `src/server.py` is FastAPI application that
+Project has two parts. `src/fibapp/server.py` is FastAPI application that
 returns first `n` Fibonacci numbers on `GET /fiblist?n=…` and health
-check on `GET /health`. `src/client.py` fetches sequence with `requests`,
+check on `GET /health`. `src/fibapp/client.py` fetches sequence with `requests`,
 plots it with Matplotlib, and saves result to `output/fib.png`.
 
 ## Goals

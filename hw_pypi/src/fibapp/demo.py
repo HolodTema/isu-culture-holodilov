@@ -1,6 +1,7 @@
 import subprocess
 import sys
 import time
+import urllib.error
 import urllib.request
 
 from fibapp import client
@@ -13,7 +14,7 @@ def _wait_for_server(url: str, timeout: float = 15.0) -> None:
             with urllib.request.urlopen(url, timeout=1) as r:
                 if r.status == 200:
                     return
-        except Exception:
+        except (urllib.error.URLError, TimeoutError, OSError):
             time.sleep(0.5)
     raise RuntimeError("server did not start in time")
 
