@@ -1,17 +1,24 @@
-create-structure:
-	mkdir src tests docs
-	touch README.md setup.py requirements.txt
-	touch docs/DOMAIN.md docs/SPECIFICATION.md
-	touch src/.gitkeep tests/.gitkeep
+.PHONY: help install
 
-install-dep:
-	pip install -r requirements.txt
+VENV := .venv
+PY := $(VENV)/bin/python
+PIP := $(VENV)/bin/pip
+UVICORN := $(VENV)/bin/uvicorn
 
-install:
-	pip install -e .
+HOST := 127.0.0.1
+PORT := 8000
 
-test-pytest:
-	python3 -m pytest
+help:
+	@echo "Welcome to fibonacci client-server app! Targets:"
+	@echo ""
 
-test: install-dep install test-pytest
 
+$(PY):
+	python3 -m venv $(VENV)
+
+install: $(PY) requirements.txt setup.py
+	$(PIP) install -r requirements.txt
+	$(PIP) install -e .
+
+
+	
