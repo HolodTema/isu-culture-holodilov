@@ -46,7 +46,7 @@ lint: install-dev
 	$(PY) -m ruff check src scripts
 
 typecheck: install-dev
-	$(PY) -m mypy
+	$(PY) -m mypy src
 
 clean:
 	rm -rf $(VENV)
