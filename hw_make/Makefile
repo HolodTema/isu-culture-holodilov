@@ -51,6 +51,9 @@ typecheck: install-dev
 check-requirements: install-dev
 	$(PY) scripts/check_requirements.py
 
+check: typecheck lint check-requirements
+	@echo "All the checks are passed!"
+
 clean:
 	rm -rf $(VENV) output 
 
