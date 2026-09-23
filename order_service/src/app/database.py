@@ -12,9 +12,19 @@ CREATE TABLE IF NOT EXISTS orders (
     product_id TEXT NOT NULL,
     quantity INTEGER NOT NULL CHECK (quantity > 0),
     unit_price NUMERIC(10, 2) NOT NULL,
+    subtotal NUMERIC(10, 2) NOT NULL,
+    discount_percent NUMERIC(5, 2) NOT NULL DEFAULT 0,
+    discount_amount NUMERIC(10, 2) NOT NULL DEFAULT 0,
     total NUMERIC(10, 2) NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+"""
+
+ALTER_ORDERS_TABLE = """
+ALTER TABLE orders
+    ADD COLUMN IF NOT EXISTS subtotal NUMERIC(10, 2) NOT NULL DEFAULT 0,
+    ADD COLUMN IF NOT EXISTS discount_percent NUMERIC(5, 2) NOT NULL DEFAULT 0,
+    ADD COLUMN IF NOT EXISTS discount_amount NUMERIC(10, 2) NOT NULL DEFAULT 0;
 """
 
 
@@ -24,9 +34,9 @@ def get_database_url(database_url: str | None = None) -> str:
 
 def init_db(database_url: str | None = None) -> None:
     url = get_database_url(database_url)
-
     with psycopg.connect(url) as conn:
         conn.execute(CREATE_ORDERS_TABLE)
+        conn.execute(ALTER_ORDERS_TABLE)
 
 
 def save_order(
@@ -34,7 +44,6 @@ def save_order(
     database_url: str | None = None,
 ) -> int:
     url = get_database_url(database_url)
-
     with psycopg.connect(url) as conn:
         with conn.cursor() as cur:
             cur.execute(
@@ -43,12 +52,18 @@ def save_order(
                     product_id,
                     quantity,
                     unit_price,
+                    subtotal,
+                    discount_percent,
+                    discount_amount,
                     total
                 )
                 VALUES (
                     %(product_id)s,
                     %(quantity)s,
                     %(unit_price)s,
+                    %(subtotal)s,
+                    %(discount_percent)s,
+                    %(discount_amount)s,
                     %(total)s
                 )
                 RETURNING id;
@@ -56,7 +71,6 @@ def save_order(
                 order,
             )
             row = cur.fetchone()
-
     return int(row[0])
 
 
@@ -65,7 +79,6 @@ def get_order(
     database_url: str | None = None,
 ) -> dict[str, Any] | None:
     url = get_database_url(database_url)
-
     with psycopg.connect(url, row_factory=dict_row) as conn:
         with conn.cursor() as cur:
             cur.execute(
@@ -75,6 +88,9 @@ def get_order(
                     product_id,
                     quantity,
                     unit_price,
+                    subtotal,
+                    discount_percent,
+                    discount_amount,
                     total,
                     created_at
                 FROM orders
@@ -83,20 +99,16 @@ def get_order(
                 (order_id,),
             )
             row = cur.fetchone()
-
     if row is None:
         return None
-
     return dict(row)
 
 
 def count_orders(database_url: str | None = None) -> int:
     url = get_database_url(database_url)
-
     with psycopg.connect(url) as conn:
         with conn.cursor() as cur:
             cur.execute("SELECT COUNT(*) FROM orders;")
             row = cur.fetchone()
-
     return int(row[0])
 
